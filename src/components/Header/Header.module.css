@@ -1,0 +1,40 @@
+nav {
+    display: flex;
+    justify-content: space-between;
+    background-color: rgb(85, 108, 241);
+    color: white;
+}
+
+.logoImg {
+    margin: 1em;
+    width: 3em;
+    border-radius: 50%;
+}
+
+.logo {
+    display: flex;
+    align-items: center;
+}
+
+.logo:hover {
+    cursor: pointer;
+}
+
+.title {
+    color: rgb(255, 238, 0);
+}
+
+.links {
+    display: flex;
+    align-items: center;
+    margin-right: 2em;
+}
+
+.link {
+    margin-right: 1em;
+}
+
+.link:hover {
+    cursor: pointer;
+    color: rgb(1, 0, 53);
+}

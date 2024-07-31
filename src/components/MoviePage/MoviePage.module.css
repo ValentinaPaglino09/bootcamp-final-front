@@ -1,0 +1,104 @@
+.movieContainer {
+    display: flex;
+   width: 100%;
+   margin-top: 1em;
+}
+
+.movieInfo {
+    margin-right: 2em;
+}
+
+.container {
+    display: flex;
+    justify-content: center;
+}
+
+.infoContainer {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width: 65%;
+}
+
+.poster {
+    width: 15em;
+    margin-right: 2em;
+}
+
+.synopsis {
+    width: 30em;
+    margin-bottom: 1em;
+}
+
+.title {
+    margin-top: .4em;
+    margin-bottom: .5em;
+    
+}
+
+.genre {
+    display: inline-block;
+    width: fit-content;
+    padding: 2px 5px;
+    background-color: yellow;
+    border-radius: 5px;
+}
+
+.duration {
+    margin-top: .5em;
+}
+
+.reviewsTitle {
+    display: flex;
+    justify-content: space-between;
+    
+}
+
+.reviews {
+    width: 100%;
+    box-sizing: border-box;
+    padding: 0 1em;
+}
+
+.star {
+    width: 1.5em;
+    height: 1.5em;
+   margin: 3px;
+}
+
+.rating {
+ 
+    display: flex;
+    align-items: center;
+    width: fit-content;
+}
+
+.averageRating {
+    font-size: 2em;
+}
+
+.reviewInput {
+    width: 100%;
+    height: 5em;
+    resize: none;
+    border: none;
+    border-radius: 5px;
+    font-size: 16px;
+    outline: 0;
+    padding: 5px;
+    box-sizing: border-box;
+    background-color: #b9ddf8;
+    color: #000000;
+    box-shadow: 0 1px 9px rgba(7, 0, 46, 0.4) inset;
+}
+
+.submit {
+    width: 8em;
+    height: 2.5em;
+    border: none;
+    background-color: rgb(23, 23, 110);
+    color: white;
+    border-radius: 4px;
+    
+}

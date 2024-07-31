@@ -1,0 +1,49 @@
+img {
+    width: 12em;
+    
+}
+
+p {
+    margin: 0;
+}
+
+.container {
+    
+    border-radius: 5px;
+    margin: 1em;
+    width: 12em;
+    box-shadow: 0px 0px 5px;
+}
+
+.container:hover {
+    cursor: pointer;
+}
+
+.title {
+    margin-left: 8px;
+    font-size: large;
+    height: 3em;
+}
+
+.genre {
+    width: fit-content;
+    margin: 8px;
+    padding: 2px;
+    background-color: yellow;
+    border-radius: 5px;
+   
+}
+
+.rating {
+    margin: 8px;
+    display: flex;
+    
+    align-items: center;
+    width: fit-content;
+}
+
+.star {
+    width: 1em;
+    height: 1em;
+   margin: 3px;
+}

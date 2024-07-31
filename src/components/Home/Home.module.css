@@ -1,0 +1,10 @@
+.container {
+    display: flex;
+    width: 100vw; 
+    flex-direction: column;
+}
+
+.movieCards {
+    display: flex;
+   
+}
