@@ -22,12 +22,13 @@ const handleSubmit = async (e) => {
  
  
 
-  // try {
-  //   const dataSignUp = await postData('http://localhost:3000/signup', 'POST', body)
-  //   navigate('/login')
-  // } catch (error) {
-  //   console.log(error);
-  // }
+  try {
+    const dataSignUp = await postData('http://localhost:3001/signup', 'POST', body)
+    console.log(dataSignUp);
+    navigate('/login')
+  } catch (error) {
+    console.log(error);
+  }
 }
 
   return (

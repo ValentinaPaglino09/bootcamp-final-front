@@ -1,11 +1,11 @@
 import React from 'react'
 import style from './Comment.module.css'
 
-const ReviewComment = ({id, description, user}) => {
+const ReviewComment = ({id, content, user}) => {
   return (
-    <div style={{marginTop: '1em'}}>
-      <h1 className={style.user}>{user}</h1>
-      <p>{description}</p>
+    <div id={id} style={{marginTop: '1em'}}>
+      <h1 className={style.user}>{user.name}</h1>
+      <p>{content}</p>
     </div>
   )
 }

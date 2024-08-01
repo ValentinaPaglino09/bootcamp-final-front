@@ -2,7 +2,7 @@ import React from 'react'
 import style from './Login.module.css'
 import { useNavigate } from 'react-router-dom'
 import { postData } from '../../utils/fetchData'
-import { usersArray } from '../../utils/data'
+
 
 const Login = () => {
   const navigate = useNavigate()
@@ -17,19 +17,17 @@ const handleSubmit = async (e) => {
     email, password
   }
 
-  const userExists = usersArray.find(user => user.email == email && user.password == password)
- if (userExists) sessionStorage.setItem('user', JSON.stringify(userExists))
-  else throw new Error('Datos incorrectos')
-navigate('/')
 
-  // try {
-  //   const dataLogin = await postData('http://localhost:3000/login', 'POST', body)
-  //   localStorage.setItem('token', dataLogin.token)
-  //   setCurrentUser(dataLogin.user)
-  //   navigate('/')
-  // } catch (error) {
-  //   console.log(error);
-  // }
+
+  try {
+    const dataLogin = await postData('http://localhost:3001/login', 'POST', body)
+    if (dataLogin.statusCode == 401) console.log('No está autorizado.');
+    else {localStorage.setItem('token', dataLogin.token)
+    sessionStorage.setItem('user', JSON.stringify(dataLogin.user))
+    navigate('/')}
+  } catch (error) {
+    console.log(error);
+  }
   
   
 }

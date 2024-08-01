@@ -102,3 +102,8 @@
     border-radius: 4px;
     
 }
+
+.submit:hover {
+    cursor: pointer;
+    background-color: rgb(74, 74, 201);
+}

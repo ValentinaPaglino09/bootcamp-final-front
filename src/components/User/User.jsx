@@ -4,16 +4,17 @@ import { postDataWithToken } from '../../utils/fetchData'
 import Review from '../Review/Review'
 
 const User = ({id, name, lastName, email, isBanned, reviews}) => {
-
+console.log(id);
 const handleUser = async (e) => {
-  // try {
-  //   const res = await postDataWithToken(`http://localhost:3000/users/${id}`, 'PATCH', {
-  //     isBanned: !isBanned
-  //   })
-  //   const data = await res.json()
-  // } catch (error) {
-  //   console.log(error);
-  // }
+  e.preventDefault()
+  try {
+    const data = await postDataWithToken(`http://localhost:3001/users/${id}`, 'PATCH', {
+      isBanned: !isBanned
+    })
+    console.log(data);
+  } catch (error) {
+    console.log(error);
+  }
 }
 
   return (
