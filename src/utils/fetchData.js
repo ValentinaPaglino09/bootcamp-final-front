@@ -13,11 +13,13 @@ export const fetchData = async (url, method) => {
 }
 
 export const fetchDataWithToken = async (url, method) => {
+
+    const token = localStorage.getItem('token')
     try {
         const res = await fetch(url, {
             method: method,
             headers: {
-                auth: localStorage.getItem('token')
+                authorization: `Bearer ${token}`
             }
           })
           const data = await res.json()
@@ -45,12 +47,13 @@ export const postData = async (url, method, body) => {
 }
 
 export const postDataWithToken = async (url, method, body) => {
+    const token = localStorage.getItem('token')
     try {
         const res = await fetch(url, {
             method: method,
             headers: {
                     'Content-Type': 'application/json',
-                    auth: localStorage.getItem('token')
+                    authorization: `Bearer ${token}`
             },
             body: JSON.stringify(body)
           })

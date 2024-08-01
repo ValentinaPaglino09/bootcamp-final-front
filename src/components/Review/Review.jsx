@@ -2,21 +2,23 @@ import React, { useState } from 'react'
 import style from './Review.module.css'
 import ReviewComment from '../Comment/Comment'
 import { fetchDataWithToken, postDataWithToken } from '../../utils/fetchData'
-import { useLocation } from 'react-router-dom'
+import { useLocation, useParams } from 'react-router-dom'
 
 const Review = ({id, description, user, rating, comments}) => {
 
+
   const [editMode, setEditMode] = useState(false)
   const location = useLocation()
+  const {movieId} = useParams()
 
   const handleDelete = async (e) => {
      e.preventDefault()
-    //  try {
-    //   const res = await fetchDataWithToken(`http://localhost:3000/reviews/${id}`, 'DELETE')
-    //   const data = await res.json()
-    //  } catch (error) {
-    //   console.log(error);
-    //  }
+     try {
+      const data = await fetchDataWithToken(`http://localhost:3001/reviews/${id}`, 'DELETE')
+     console.log(data);
+     } catch (error) {
+      console.log(error);
+     }
   }
   
   const handleEdit = async (e) => {
@@ -28,34 +30,36 @@ const Review = ({id, description, user, rating, comments}) => {
     }
 
      
-   //  try {
-      //  const res = await postDataWithToken(`http://localhost:3000/reviews/${id}`, 'PATCH', body)
-   // const data = await res.json()
-   //  } catch (error) {
-   //   console.log(error);
-   //  }
+    try {
+       const data = await postDataWithToken(`http://localhost:3001/reviews/${id}`, 'PATCH', body)
+       console.log(data);
+    } catch (error) {
+     console.log(error);
+    }
+
+    setEditMode(false)
   }
 
 const handleSubmit = async (e) => {
   e.preventDefault()
-
+const userId = JSON.parse(sessionStorage.getItem('user')).id
   const body = {
-    description: e.target[0].value,
+    content: e.target[0].value,
     review: id,
-    user: user.id
+    user: userId
   }
 
-  // try {
-  // const res = await postDataWithToken('http://localhost:3000/comments', 'POST', body)
-  //  const data = await res.json() 
-  // } catch (error) {
-  //   console.log(error);
-  // }
+  try {
+  const data = await postDataWithToken('http://localhost:3001/comments', 'POST', body)
+  console.log(data);
+  } catch (error) {
+    console.log(error);
+  }
 }
   
   return (
     <div id={id} className={style.container}>
-      <h2>{user}</h2>
+      <h2>{user && user.name}</h2>
       {
         !editMode &&
       <div>
@@ -84,7 +88,7 @@ const handleSubmit = async (e) => {
   }
       
       
-    {location.pathname == '/' && 
+    {location.pathname == `/movie/${movieId}` && 
      <div>
       <form onSubmit={handleSubmit}>
       <textarea placeholder='Add comment...' name='description'></textarea>
@@ -96,7 +100,7 @@ const handleSubmit = async (e) => {
     
       {
        comments && comments.map(comment => (
-          <ReviewComment key={comment.id} id={comment.id} description={comment.description} user={comment.user}/>
+          <ReviewComment key={comment.id} id={comment.id} content={comment.content} user={comment.user}/>
         ))
       }
     </div>

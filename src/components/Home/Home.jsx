@@ -2,39 +2,39 @@ import React, { useEffect, useState } from 'react'
 import style from './Home.module.css'
 import Movie from '../Movie/Movie'
 import SearchBar from '../SearchBar/SearchBar'
-import {moviesArray} from '../../utils/data' 
 import MoviePage from '../MoviePage/MoviePage'
+import { fetchData } from '../../utils/fetchData'
 
 const Home = () => {
 
   const [moviesData, setMoviesData] = useState([])
-  const [selectedMovie, setSelectedMovie] = useState()
+  //const [selectedMovie, setSelectedMovie] = useState()
   const [results, setResults] = useState([])
  
 
   useEffect(() => {
 
-  //  fetchData('http://localhost:3000/movies', 'GET')
-  //  .then(res => res.json())
-  //  .then(data => setMoviesData(data))
+   fetchData('http://localhost:3001/movies', 'GET')
+   .then(data => {
+    setMoviesData(data)
+    setResults(data)
+  })
 
-  setMoviesData(moviesArray)
-   setResults(moviesArray)
-   setSelectedMovie(localStorage.getItem('selectedMovieId'))
+   //setSelectedMovie(localStorage.getItem('selectedMovieId'))
   }, [])
 
 
 
-if (selectedMovie) {
-  return <MoviePage setSelectedMovie={setSelectedMovie} selectedMovieData={moviesData.find(movie => movie.id == selectedMovie)}/> 
-}
-  else return (
+// if (selectedMovie) {
+//   return <MoviePage setSelectedMovie={setSelectedMovie} selectedMovie={selectedMovie}/> 
+// }
+  return (
    <div className={style.container}>
     <SearchBar moviesData={moviesData} setResults={setResults}/>
     <div className={style.movieCards}>
     {
      results && results.map(movie => (
-        <Movie selectMovie={setSelectedMovie} key={movie.id} id={movie.id} img={movie.img} title={movie.title}  avg_rating={movie.avg_rating} genre={movie.genre} />
+        <Movie  key={movie.id} id={movie.id} img={movie.img} title={movie.title}  avg_rating={movie.avg_rating} genre={movie.genre} />
       ))
     }
     </div>

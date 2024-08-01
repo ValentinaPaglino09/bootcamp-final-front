@@ -1,14 +1,21 @@
-import React from 'react'
+import React, { useEffect, useState } from 'react'
 import Review from '../Review/Review'
-import { postDataWithToken } from '../../utils/fetchData'
-import { useNavigate } from 'react-router-dom'
+import { fetchData, postDataWithToken } from '../../utils/fetchData'
+import { useNavigate, useParams } from 'react-router-dom'
 import style from './MoviePage.module.css'
 import star from '../../assets/star.png'
 
 const MoviePage = ({selectedMovieData, setSelectedMovie}) => {
 
+const {movieId} = useParams()
+const [movieInfo, setMovieInfo] = useState()
 
-   const {id, title, synopsis, img, year, duration, genre, avg_rating, reviews} = selectedMovieData
+useEffect(() => {
+
+  fetchData(`http://localhost:3001/movies/${movieId}`, 'GET')
+  .then(data => setMovieInfo(data))
+}, [])
+  
  
     const user = JSON.parse(sessionStorage.getItem('user'))
 
@@ -18,43 +25,41 @@ const MoviePage = ({selectedMovieData, setSelectedMovie}) => {
        const body = {
         description: e.target[0].value,
         rating: e.target[1].value,
-        movie: id,
+        movie: movieId,
         user: user.id
        }
   
       
-       
-        
-      //  try {
-         //  const res = await postDataWithToken('http://localhost:3000/reviews', 'POST', body)
-      // const data = await res.json()
-      //  } catch (error) {
-      //   console.log(error);
-      //  }
+       try {
+          const data = await postDataWithToken('http://localhost:3001/reviews', 'POST', body)
+          console.log(data);
+       } catch (error) {
+        console.log(error);
+       }
      
     }
 
-  return (
+  if (movieInfo) return (
     <div className={style.container}>
-      <div id={id} className={style.infoContainer}>
-        <button onClick={(e) => {
+      <div id={movieId} className={style.infoContainer}>
+        {/* <button onClick={(e) => {
         e.preventDefault()
         localStorage.removeItem('selectedMovieId')
         setSelectedMovie()
-      }}>Volver a inicio</button>
+      }}>Volver a inicio</button> */}
     
     <div className={style.movieContainer}>
-    <img src={img} className={style.poster}></img>
+    <img src={movieInfo.img} className={style.poster}></img>
      <div className={style.movieInfo}>
-     <h1 className={style.title}>{title + ' (' + year + ')'}</h1>
+     <h1 className={style.title}>{movieInfo.title + ' (' + movieInfo.year + ')'}</h1>
    
      <div className={style.synopsis}>
-     <p>{synopsis}</p>
+     <p>{movieInfo.synopsis}</p>
      </div>
     
      <div >
-     <span> Genre: <p className={style.genre}> {genre}</p></span> 
-      <p className={style.duration}> Duration: {duration + ' min'}</p>
+     <span> Genre: <p className={style.genre}> {movieInfo.genre && movieInfo.genre.name}</p></span> 
+      <p className={style.duration}> Duration: {movieInfo.duration + ' min'}</p>
      </div>
      </div>
     </div>
@@ -63,7 +68,7 @@ const MoviePage = ({selectedMovieData, setSelectedMovie}) => {
       <div className={style.reviewsTitle}>
       <h1>Reviews</h1>
       <span className={style.rating}>
-      <h2 className={style.averageRating}>{avg_rating}</h2>
+      <h2 className={style.averageRating}>{movieInfo.avg_rating}</h2>
       <img className={style.star} src={star}></img>
       </span>
       </div>
@@ -74,9 +79,10 @@ const MoviePage = ({selectedMovieData, setSelectedMovie}) => {
         <input className={style.submit} type='submit'></input>
       </form>
       {
-        reviews.map(review => (
-            <Review key={review.id} id={review.id} description={review.description} user={review.user} comments={review.comments}/>
-        ))
+       movieInfo.reviews && movieInfo.reviews.map(review => {
+        
+            return <Review key={review.id} id={review.id} description={review.description} user={review.user} comments={review.comments}/>
+       })
       }
      </div>
      

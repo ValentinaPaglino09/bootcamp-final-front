@@ -1,12 +1,11 @@
 import React from 'react'
 import style from './Header.module.css'
 import { useNavigate } from 'react-router-dom'
-import SearchBar from '../SearchBar/SearchBar'
 import logo from '../../assets/popcorn.jpg'
 
 const Header = () => {
 const navigate = useNavigate()
-const user = JSON.parse(sessionStorage.getItem('user'))
+const token = localStorage.getItem('token')
 
   return (
     <nav>
@@ -20,10 +19,13 @@ const user = JSON.parse(sessionStorage.getItem('user'))
       <span className={style.links}>
         <p className={style.link} onClick={(e) => {
           e.preventDefault()
-          if (user) sessionStorage.removeItem('user')
-          navigate(user ? '/' : '/login')
-        }}>{user ? 'Sign Out' : 'Sign in'}</p>
-        { user && <p className={style.link} onClick={(e) => {
+          if (token) {
+            localStorage.removeItem('token')
+            sessionStorage.removeItem('user')
+          }
+          navigate(token ? '/' : '/login')
+        }}>{token ? 'Sign Out' : 'Sign in'}</p>
+        { token && <p className={style.link} onClick={(e) => {
           e.preventDefault()
           navigate('/profile')
         }}>Profile</p>}
