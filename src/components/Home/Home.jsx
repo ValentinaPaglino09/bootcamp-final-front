@@ -23,8 +23,6 @@ const Home = () => {
    //setSelectedMovie(localStorage.getItem('selectedMovieId'))
   }, [])
 
-
-
 // if (selectedMovie) {
 //   return <MoviePage setSelectedMovie={setSelectedMovie} selectedMovie={selectedMovie}/> 
 // }

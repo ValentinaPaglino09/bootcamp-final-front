@@ -18,7 +18,7 @@ const MovieCard = ({id, img, title, avg_rating, genre, selectMovie}) => {
     }}>
       <img src={img}></img>
       <div className={style.genre}>
-      <p style={{margin: 0}}>{genre.name}</p>
+      <p style={{margin: 0}}>{genre}</p>
       </div>
       
       <h1 className={style.title}>{title}</h1>
