@@ -71,8 +71,12 @@ useEffect(() => {
     
       <form onSubmit={handleSubmit}>
         <textarea placeholder='Add a review...' name='description' className={style.reviewInput}></textarea>
-        <input type='number' min={1} max={5} placeholder='rating' name='rating'></input>
-        <input className={style.submit} type='submit'></input>
+        <span className={style.addRating}>
+        <label htmlFor='rating'>Rate this movie out of 5 stars:</label>
+        <input className={style.ratingInput} id='rating' type='number' min={1} max={5} defaultValue={1} name='rating'></input>
+        <img className={style.star} src={star}></img>
+        </span>
+        <input className={style.submit} value='Submit' type='submit'></input>
       </form>
       {
        movieInfo.reviews && movieInfo.reviews.map(review => {
