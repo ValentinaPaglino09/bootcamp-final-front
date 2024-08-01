@@ -58,7 +58,7 @@ useEffect(() => {
      </div>
     
      <div >
-     <span> Genre: <p className={style.genre}> {movieInfo.genre && movieInfo.genre.name}</p></span> 
+     <span> Genre: <p className={style.genre}> {movieInfo.genre}</p></span> 
       <p className={style.duration}> Duration: {movieInfo.duration + ' min'}</p>
      </div>
      </div>

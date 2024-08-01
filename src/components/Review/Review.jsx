@@ -59,7 +59,7 @@ const userId = JSON.parse(sessionStorage.getItem('user')).id
   
   return (
     <div id={id} className={style.container}>
-      <h2>{user && user.name}</h2>
+      <h2>{user}</h2>
       {
         !editMode &&
       <div>
