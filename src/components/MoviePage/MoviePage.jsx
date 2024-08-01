@@ -5,7 +5,7 @@ import { useNavigate, useParams } from 'react-router-dom'
 import style from './MoviePage.module.css'
 import star from '../../assets/star.png'
 
-const MoviePage = ({selectedMovieData, setSelectedMovie}) => {
+const MoviePage = () => {
 
 const {movieId} = useParams()
 const [movieInfo, setMovieInfo] = useState()
@@ -14,7 +14,7 @@ useEffect(() => {
 
   fetchData(`http://localhost:3001/movies/${movieId}`, 'GET')
   .then(data => setMovieInfo(data))
-}, [])
+}, [movieInfo])
   
  
     const user = JSON.parse(sessionStorage.getItem('user'))
@@ -42,11 +42,6 @@ useEffect(() => {
   if (movieInfo) return (
     <div className={style.container}>
       <div id={movieId} className={style.infoContainer}>
-        {/* <button onClick={(e) => {
-        e.preventDefault()
-        localStorage.removeItem('selectedMovieId')
-        setSelectedMovie()
-      }}>Volver a inicio</button> */}
     
     <div className={style.movieContainer}>
     <img src={movieInfo.img} className={style.poster}></img>
@@ -81,7 +76,7 @@ useEffect(() => {
       {
        movieInfo.reviews && movieInfo.reviews.map(review => {
         
-            return <Review key={review.id} id={review.id} description={review.description} user={review.user} comments={review.comments}/>
+            return <Review key={review.id} id={review.id} description={review.description} user={review.user} comments={review.comments} />
        })
       }
      </div>

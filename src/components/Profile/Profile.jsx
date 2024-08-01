@@ -15,7 +15,7 @@ const Profile = () => {
   fetchDataWithToken(`http://localhost:3001/users/${id}`)
   .then(data => setProfile(data.user))
   .catch(error => console.log(error))
- }, [id])
+ }, [id, profile])
 
 
  if (profile){
@@ -27,7 +27,7 @@ const Profile = () => {
       <h3>My reviews</h3>
       {
         reviews && reviews.map(review => (
-          <Review key={review.id} id={review.id} description={review.description} rating={review.rating} />
+          <Review key={review.id} id={review.id} description={review.description} rating={review.rating} setProfile={setProfile}/>
         ))
       }
     </div>

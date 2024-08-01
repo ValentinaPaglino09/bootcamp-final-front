@@ -15,7 +15,7 @@ useEffect(() => {
   fetchDataWithToken('http://localhost:3001/users', 'GET')
   .then((data) => setUsers(data))
   .catch(error => console.log(error))
-}, [])
+}, [users])
 
 
 

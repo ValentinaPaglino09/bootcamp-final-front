@@ -8,7 +8,6 @@ import { fetchData } from '../../utils/fetchData'
 const Home = () => {
 
   const [moviesData, setMoviesData] = useState([])
-  //const [selectedMovie, setSelectedMovie] = useState()
   const [results, setResults] = useState([])
  
 
@@ -20,12 +19,9 @@ const Home = () => {
     setResults(data)
   })
 
-   //setSelectedMovie(localStorage.getItem('selectedMovieId'))
   }, [])
 
-// if (selectedMovie) {
-//   return <MoviePage setSelectedMovie={setSelectedMovie} selectedMovie={selectedMovie}/> 
-// }
+
   return (
    <div className={style.container}>
     <SearchBar moviesData={moviesData} setResults={setResults}/>
