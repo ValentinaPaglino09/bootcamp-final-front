@@ -3,6 +3,8 @@ import style from './Review.module.css'
 import ReviewComment from '../Comment/Comment'
 import { fetchDataWithToken, postDataWithToken } from '../../utils/fetchData'
 import { useLocation, useParams } from 'react-router-dom'
+import star from '../../assets/star.png'
+
 
 const Review = ({id, description, user, rating, comments}) => {
 
@@ -62,37 +64,52 @@ const userId = JSON.parse(sessionStorage.getItem('user')).id
       <h2>{user}</h2>
       {
         !editMode &&
-      <div>
+        <div>
+          <span className={style.rating}>
+             <p>{rating}</p>
+      
+      <img className={style.star} src={star}></img>
+          </span>
       <p>{description}</p>
-      <p>{rating}</p>
       </div>
       }
       
       {
         editMode && 
         <form onSubmit={handleEdit}>
-       <textarea defaultValue={description} name='description'></textarea>
-        <input type='number' min={1} max={5} defaultValue={rating} name='rating'></input>
-        <input type='submit'></input>
+       <textarea defaultValue={description} name='description' className={style.editReview}></textarea>
+       <span style={{display: 'flex', alignItems: 'center'}}>
+       <p>Your rating:</p>
+       <input type='number' min={1} max={5} defaultValue={rating} name='rating' className={style.editRating}></input>
+       <img className={style.star} src={star}></img>
+       </span>
+        <span style={{display: 'flex'}}>
+        <input type='submit' className={style.editDelReview} value='Save changes'></input>
+        <button className={style.editDelReview} onClick={(e) => {
+          e.preventDefault()
+          setEditMode(false)
+        }} >Cancel</button>
+        </span>
         </form>
       }
   {
-    (location.pathname == '/profile' || location.pathname == '/admin') &&
+    ((location.pathname == '/profile' || location.pathname == '/admin') && !editMode) &&
+    
     <div>
     <button onClick={(e) => {
       e.preventDefault()
       setEditMode(!editMode)
-    }}>{editMode ? 'Cancel' : 'Edit Review'}</button>
-    <button onClick={handleDelete}>Delete review</button>
+    }} className={style.editDelReview}>Edit Review</button>
+    <button onClick={handleDelete} className={style.editDelReview}>Delete review</button>
     </div>
   }
       
       
     {location.pathname == `/movie/${movieId}` && 
      <div>
-      <form onSubmit={handleSubmit}>
-      <textarea placeholder='Add comment...' name='description'></textarea>
-      <input type='submit'></input>
+      <form onSubmit={handleSubmit} style={{display: 'flex', alignItems: 'center'}}>
+      <textarea placeholder='Add comment...' name='description' className={style.addCommentInput}></textarea>
+      <input type='submit' className={style.submitComment}></input>
       </form>
     
       </div>

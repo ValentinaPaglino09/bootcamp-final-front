@@ -21,15 +21,20 @@ const Profile = () => {
  if (profile){
   const {name, lastName, email, reviews} = profile
   return (
-    <div>
+    <div className={style.container}>
+    <div className={style.profile}>
       <h1>{name + ' ' + lastName}</h1>
       <h2>{email}</h2>
+      
       <h3>My reviews</h3>
+      <div>
       {
         reviews && reviews.map(review => (
           <Review key={review.id} id={review.id} description={review.description} rating={review.rating} setProfile={setProfile}/>
         ))
       }
+      </div>
+    </div>
     </div>
   )}
   else return (<div>Not Found</div>)

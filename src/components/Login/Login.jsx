@@ -33,22 +33,24 @@ const handleSubmit = async (e) => {
 }
 
   return (
-    <>
-    <form onSubmit={handleSubmit}>
+    <div className={style.container}>
+    <form onSubmit={handleSubmit} className={style.login}>
+      <h1 style={{textAlign: 'center', margin: '0 0 .8em 0', color: 'rgb(85, 108, 241)'}}>Welcome back!</h1>
       <label htmlFor='email'>Email:</label>
-      <input id='email' type='email' name='email'></input>
+      <input id='email' type='email' name='email' className={style.formInput}></input>
 
       <label htmlFor='pass'>Password:</label>
-      <input id='pass' type='password' name='pass'></input>
+      <input id='pass' type='password' name='pass' className={style.formInput}></input>
 
-      <input type='submit'></input>
-    </form>
-    <p>Don't have an account?</p>
+      <input type='submit' className={style.submit} value='Log in'></input>
+      <p>Don't have an account?</p>
     <button onClick={(e) => {
       e.preventDefault()
       navigate('/signup')
-    }}>Sign up</button>
-    </>
+    }} className={style.signup}>Sign up</button>
+    </form>
+    
+    </div>
   )
 }
 

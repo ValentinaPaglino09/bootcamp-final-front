@@ -1,0 +1,60 @@
+@import url('https://fonts.googleapis.com/css2?family=Concert+One&family=Rubik:ital,wght@0,300..900;1,300..900&family=Zain:wght@200;300;400;700;800;900&display=swap');
+
+
+.container {
+    display: flex;
+   justify-content: center;
+  align-items: center;
+  padding-top: 4em;
+}
+
+.login {
+    display: flex;
+    flex-direction: column;
+    padding: 1em;
+    /* box-shadow: 0px 0px 4px; */
+}
+
+
+.formInput {
+    margin: .5em 0;
+    width: 18em;
+    height: 2em;
+    resize: none;
+    border: none;
+    border-radius: 5px;
+    font-size: 16px;
+    outline: 0;
+    padding: 5px;
+    box-sizing: border-box;
+    color: #000000;
+    box-shadow: 0 1px 5px rgba(7, 0, 46, 0.4) inset;
+}
+
+.submit {
+    margin: 1em 0 2em 0;
+    background-color: rgb(85, 108, 241);
+    border-radius: 5px;
+    border: none;
+    height: 2.5em;
+    font-family: 'Rubik', sans-serif;
+    font-size: medium;
+    color: white;
+}
+
+
+.signup {
+    margin-top: 1em;
+    background-color: rgb(167, 92, 238);
+    border-radius: 5px;
+    border: none;
+    height: 2.5em;
+    font-family: 'Rubik', sans-serif;
+    font-size: medium;
+    color: white;
+}
+
+.submit:hover, .signup:hover {
+    cursor: pointer;
+    opacity: 0.7;
+}

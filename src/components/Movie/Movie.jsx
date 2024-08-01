@@ -21,9 +21,11 @@ const MovieCard = ({id, img, title, avg_rating, genre}) => {
       
       <h1 className={style.title}>{title}</h1>
       <span className={style.rating}>
+        
       <img src={star} className={style.star}></img>
-      <p >{avg_rating.value}</p>
-      <p>{avg_rating.totalReviews + ' ' + 'reviews'}</p>
+      <p style={{marginRight: '.4em'}}>{avg_rating.value}</p>
+        
+      <p style={{fontSize: 'small', opacity: '0.8'}}>{avg_rating.totalReviews + ' ' + 'reviews'}</p>
       </span>
      
       

@@ -1,11 +1,96 @@
 
 
 .container {
-    border: 1px solid black;
+    border: 1px solid rgba(0, 0, 0, 0.5);
     border-radius: 5px;
     padding: .5em;
+    margin: 1.5em 0;
 }
 
 .container h2 {
     margin: 0 0 .5em 0em;
+}
+
+.star {
+    width: 1em;
+    height: 1em;
+   margin: 3px;
+}
+
+.rating {
+ 
+    display: flex;
+    align-items: center;
+    width: fit-content;
+}
+
+.addCommentInput {
+    width: 40%;
+    height: 2em;
+    resize: none;
+    border: none;
+    border-radius: 5px;
+    font-size: 16px;
+    outline: 0;
+    padding: 5px;
+    box-sizing: border-box;
+    background-color: #f7f8b9;
+    color: #000000;
+    box-shadow: 0 1px 5px rgba(46, 45, 0, 0.4) inset;
+    margin: .7em 0;
+}
+
+.submitComment {
+    height: 2em;
+    margin-left: .5em;
+    border: none;
+    background-color: #f8f8f4;
+    border-radius: 5px;
+    border: 1px solid rgba(0, 0, 0, 0.5);
+}
+
+.submitComment:hover {
+    cursor: pointer;
+    background-color: #f7f8b9;
+}
+
+.editDelReview {
+    height: 2em;
+    border: none;
+    background-color: rgb(255, 210, 9);
+    color: rgb(0, 0, 0);
+    border-radius: 5px;
+    margin: .6em .8em .1em 0;
+}
+
+.editDelReview:hover {
+    opacity: 0.7;
+    cursor: pointer;
+  
+}
+
+.editReview {
+    width: 100%;
+    height: 4em;
+    resize: none;
+    border: none;
+    border-radius: 5px;
+    font-size: 16px;
+    outline: 0;
+    padding: 5px;
+    box-sizing: border-box;
+    background-color: #b9ddf8;
+    color: #000000;
+    box-shadow: 0 1px 5px rgba(46, 45, 0, 0.4) inset;
+    margin: .7em 0;
+}
+
+.editRating {
+    width: 2em; 
+    border: none; 
+    height: 1.1em; 
+    box-shadow: 0 1px 5px rgba(7, 0, 46, 0.4) inset;
+     font-size: medium;
+     border-radius: 5px;
+     margin-left: .7em;
 }

@@ -32,29 +32,33 @@ const handleSubmit = async (e) => {
 }
 
   return (
-    <>
-    <form onSubmit={handleSubmit}>
-
+    <div className={style.container}>
+    <form onSubmit={handleSubmit} className={style.signup}>
+    <h1 style={{textAlign: 'center', margin: '0 0 .3em 0', color: 'rgb(85, 108, 241)'}}>Welcome!</h1>
+     
       <label htmlFor='name'>Name: </label>
-      <input id='name' type='text' name='name'></input>
+      <input id='name' type='text' name='name' className={style.formInput}></input>
 
       <label htmlFor='lastName'>Last name: </label>
-      <input id='lastName' type='text' name='lastName'></input>
+      <input id='lastName' type='text' name='lastName' className={style.formInput}></input>
 
       <label htmlFor='email'>Email:</label>
-      <input id='email' type='email' name='email'></input>
+      <input id='email' type='email' name='email' className={style.formInput}></input>
 
       <label htmlFor='pass'>Password:</label>
-      <input id='pass' type='password' name='pass'></input>
+      <input id='pass' type='password' name='pass' className={style.formInput}></input>
 
-      <input type='submit'></input>
-    </form>
-    <p>Already have an account?</p>
+      <input type='submit' className={style.submit} value='Sign up'></input>
+
+      <p>Already have an account?</p>
     <button onClick={(e) => {
       e.preventDefault()
       navigate('/login')
-    }}>Login</button>
-    </>
+    }} className={style.login}>Login</button>
+
+    </form>
+    
+    </div>
   )
 }
 

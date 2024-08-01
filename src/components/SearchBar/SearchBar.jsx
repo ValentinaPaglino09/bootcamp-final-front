@@ -13,7 +13,7 @@ const SearchBar = ({moviesData, setResults}) => {
 
  useEffect(() => {
   
-  const results = moviesData.filter(movie => movie.title.toLowerCase().startsWith(searchValue) || movie.genre.name.toLowerCase().startsWith(searchValue) || (movie.year.toString()).startsWith(searchValue))
+  const results = moviesData.filter(movie => movie.title.toLowerCase().startsWith(searchValue) || movie.genre.toLowerCase().startsWith(searchValue) || (movie.year.toString()).startsWith(searchValue))
  
   setResults(results)
  }, [searchValue])
