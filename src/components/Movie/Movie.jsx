@@ -5,15 +5,13 @@ import { useNavigate } from 'react-router-dom'
 import star from '../../assets/star.png'
 
 
-const MovieCard = ({id, img, title, avg_rating, genre, selectMovie}) => {
+const MovieCard = ({id, img, title, avg_rating, genre}) => {
 
   const navigate = useNavigate()
 
   return (
     <div id={id} className={style.container} onClick={(e) => {
       e.preventDefault()
-    //   localStorage.setItem('selectedMovieId', id)
-    //  selectMovie(id)
     navigate(`/movie/${id}`)
     }}>
       <img src={img}></img>
