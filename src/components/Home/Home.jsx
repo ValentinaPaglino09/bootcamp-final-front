@@ -4,6 +4,7 @@ import Movie from '../Movie/Movie'
 import SearchBar from '../SearchBar/SearchBar'
 import MoviePage from '../MoviePage/MoviePage'
 import { fetchData } from '../../utils/fetchData'
+import { avgRating } from '../../utils/avgRating'
 
 const Home = () => {
 
@@ -28,7 +29,7 @@ const Home = () => {
     <div className={style.movieCards}>
     {
      results && results.map(movie => (
-        <Movie  key={movie.id} id={movie.id} img={movie.img} title={movie.title}  avg_rating={movie.avg_rating} genre={movie.genre} />
+        <Movie  key={movie.id} id={movie.id} img={movie.img} title={movie.title}  avg_rating={avgRating(movie.reviews)} genre={movie.genre} />
       ))
     }
     </div>

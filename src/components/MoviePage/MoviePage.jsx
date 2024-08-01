@@ -4,6 +4,7 @@ import { fetchData, postDataWithToken } from '../../utils/fetchData'
 import { useNavigate, useParams } from 'react-router-dom'
 import style from './MoviePage.module.css'
 import star from '../../assets/star.png'
+import { avgRating } from '../../utils/avgRating'
 
 const MoviePage = () => {
 
@@ -63,7 +64,7 @@ useEffect(() => {
       <div className={style.reviewsTitle}>
       <h1>Reviews</h1>
       <span className={style.rating}>
-      <h2 className={style.averageRating}>{movieInfo.avg_rating}</h2>
+      <h2 className={style.averageRating}>{avgRating(movieInfo.reviews)['value']}</h2>
       <img className={style.star} src={star}></img>
       </span>
       </div>
@@ -76,7 +77,7 @@ useEffect(() => {
       {
        movieInfo.reviews && movieInfo.reviews.map(review => {
         
-            return <Review key={review.id} id={review.id} description={review.description} user={review.user} comments={review.comments} />
+            return <Review key={review.id} id={review.id} description={review.description} rating={review.rating} user={review.user} comments={review.comments} />
        })
       }
      </div>
