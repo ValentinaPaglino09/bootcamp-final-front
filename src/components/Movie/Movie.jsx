@@ -13,7 +13,7 @@ const MovieCard = ({id, img, title, avg_rating, genre}) => {
       e.preventDefault()
     navigate(`/movie/${id}`)
     }}>
-      <img src={img}></img>
+      <img src={img} alt={`${title} poster`} title={`${title} poster`}></img>
       <div className={style.genre}>
       <p style={{margin: 0}}>{genre}</p>
       </div>

@@ -8,6 +8,7 @@ import MoviePage from "./components/MoviePage/MoviePage.jsx"
 import Header from "./components/Header/Header.jsx"
 
 
+
 function App() {
   
   
@@ -24,6 +25,7 @@ function App() {
       <Route path="/profile" element={<Profile />}></Route>
       <Route path="/admin"  element={< Users/>}></Route>
      </Routes>
+    
     </>
   )
 }

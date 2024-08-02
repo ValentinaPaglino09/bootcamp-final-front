@@ -13,8 +13,8 @@ const token = localStorage.getItem('token')
         e.preventDefault()
         navigate('/')
       }}>
-      <img src={logo} className={style.logoImg}></img>
-      <h1 className={style.title}>Pelis.com</h1>
+      <img src={logo} alt='MovieMania Logo'  className={style.logoImg}></img>
+      <h1 className={style.title}>MovieMania</h1>
       </span>
       <span className={style.links}>
         <p className={style.link} onClick={(e) => {
