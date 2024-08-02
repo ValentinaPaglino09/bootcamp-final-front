@@ -1,9 +1,9 @@
 
-h1 {
+.userName h1 {
     margin: 0;
     color: rgb(32, 102, 252);
 }
-h2 {
+.userName h2 {
     margin: 0;
     color: gray;
 }
@@ -29,6 +29,7 @@ h2 {
     padding: 12px;
     border-radius: 8px;
     border-style: none;
+    margin-top: 1em;
 }
 
 .btn:hover {

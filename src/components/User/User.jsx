@@ -24,14 +24,14 @@ const handleUser = async (e) => {
         <h2>{email}</h2>
       </div>
       <div className={style.cardsDiv}>
-
+        <button onClick={handleUser} className={style.btn}>{isBanned ? 'Habilitar' : 'Deshabilitar'}</button>
+     
       {
         reviews.map(review => (
           <Review  key={review.id} id={review.id} user={name} description={review.description} rating={review.rating} setUsers={setUsers}/>
         ))
       }
       </div>
-      <button onClick={handleUser} className={style.btn}>{isBanned ? 'Habilitar' : 'Deshabilitar'}</button>
     </div>
   )
 }
