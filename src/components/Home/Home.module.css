@@ -2,9 +2,13 @@
     display: flex;
     width: 100%; 
     flex-direction: column;
+   
 }
 
 .movieCards {
     display: flex;
-   
+    flex-wrap: wrap;
+    gap: .5em;
+    justify-content: center;
+    align-items: center;
 }

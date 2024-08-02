@@ -3,15 +3,15 @@ import style from './User.module.css'
 import { postDataWithToken } from '../../utils/fetchData'
 import Review from '../Review/Review'
 
-const User = ({id, name, lastName, email, isBanned, reviews}) => {
-console.log(id);
+const User = ({id, name, lastName, email, isBanned, reviews, setUsers}) => {
+
 const handleUser = async (e) => {
   e.preventDefault()
   try {
-    const data = await postDataWithToken(`http://localhost:3001/users/${id}`, 'PATCH', {
+    const updatedUsers = await postDataWithToken(`http://localhost:3001/users/${id}`, 'PATCH', {
       isBanned: !isBanned
     })
-    console.log(data);
+    setUsers(updatedUsers)
   } catch (error) {
     console.log(error);
   }
@@ -23,7 +23,7 @@ const handleUser = async (e) => {
       <h2>{email}</h2>
       {
         reviews.map(review => (
-          <Review key={review.id} id={review.id} user={name} description={review.description} rating={review.rating}/>
+          <Review key={review.id} id={review.id} user={name} description={review.description} rating={review.rating} setUsers={setUsers}/>
         ))
       }
       <button onClick={handleUser}>{isBanned ? 'Habilitar' : 'Deshabilitar'}</button>

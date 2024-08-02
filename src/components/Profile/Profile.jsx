@@ -8,17 +8,20 @@ const Profile = () => {
   const [profile, setProfile] = useState()
 
  const userData = JSON.parse(sessionStorage.getItem('user'))
- const {id} = userData
+const id = userData?.id
 
 
  useEffect(() => {
-  fetchDataWithToken(`http://localhost:3001/users/${id}`)
-  .then(data => setProfile(data.user))
-  .catch(error => console.log(error))
- }, [id, profile])
+  if (userData) {
+    fetchDataWithToken(`http://localhost:3001/users/${id}`)
+    .then(data => setProfile(data.user))
+    .catch(error => console.log(error))
+  }
+  
+ }, [id])
 
 
- if (profile){
+ if (userData && profile){
   const {name, lastName, email, reviews} = profile
   return (
     <div className={style.container}>
@@ -30,7 +33,7 @@ const Profile = () => {
       <div>
       {
         reviews && reviews.map(review => (
-          <Review key={review.id} id={review.id} description={review.description} rating={review.rating} setProfile={setProfile}/>
+          <Review key={review.id} id={review.id} description={review.description} rating={review.rating} setProfile={setProfile} movie={review.movie.title}/>
         ))
       }
       </div>

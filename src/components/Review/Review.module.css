@@ -1,8 +1,8 @@
 
 
 .container {
-    border: 1px solid rgba(0, 0, 0, 0.5);
-    border-radius: 5px;
+    box-shadow: 0 0 3px;
+   
     padding: .5em;
     margin: 1.5em 0;
 }
@@ -29,14 +29,13 @@
     height: 2em;
     resize: none;
     border: none;
-    border-radius: 5px;
+    border-bottom: 1px solid black;
     font-size: 16px;
     outline: 0;
     padding: 5px;
     box-sizing: border-box;
-    background-color: #f7f8b9;
     color: #000000;
-    box-shadow: 0 1px 5px rgba(46, 45, 0, 0.4) inset;
+    /* box-shadow: 0 1px 5px rgba(46, 45, 0, 0.4) inset; */
     margin: .7em 0;
 }
 
@@ -44,9 +43,9 @@
     height: 2em;
     margin-left: .5em;
     border: none;
-    background-color: #f8f8f4;
-    border-radius: 5px;
-    border: 1px solid rgba(0, 0, 0, 0.5);
+    background-color: #ffd549;
+    border-radius: 4px;
+    
 }
 
 .submitComment:hover {
@@ -93,4 +92,24 @@
      font-size: medium;
      border-radius: 5px;
      margin-left: .7em;
+}
+
+.commentForm {
+    display: flex;
+    align-items: center;
+}
+
+@media only screen and (max-width: 600px) {
+    .addCommentInput {
+        width: 100%;
+    }
+
+    .commentForm {
+        flex-direction: column;
+    }
+
+    .submitComment {
+        width: 8em;
+        margin: .5em 0 1em 0;
+    }
 }

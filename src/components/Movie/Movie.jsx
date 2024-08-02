@@ -1,6 +1,5 @@
 import React from 'react'
 import style from './Movie.module.css'
-import Review from '../Review/Review'
 import { useNavigate } from 'react-router-dom'
 import star from '../../assets/star.png'
 
