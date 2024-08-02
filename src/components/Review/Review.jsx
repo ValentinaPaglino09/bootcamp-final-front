@@ -2,11 +2,13 @@ import React, { useState } from 'react'
 import style from './Review.module.css'
 import ReviewComment from '../Comment/Comment'
 import { fetchDataWithToken, postDataWithToken } from '../../utils/fetchData'
-import { useLocation, useParams } from 'react-router-dom'
+import { useLocation, useNavigate, useParams } from 'react-router-dom'
 import star from '../../assets/star.png'
 
 
-const Review = ({id, description, user, rating, comments}) => {
+const Review = ({id, description, user, rating, comments, movie, setMovieInfo, setProfile, setUsers}) => {
+
+  const navigate = useNavigate()
 
 
   const [editMode, setEditMode] = useState(false)
@@ -16,8 +18,12 @@ const Review = ({id, description, user, rating, comments}) => {
   const handleDelete = async (e) => {
      e.preventDefault()
      try {
-      const data = await fetchDataWithToken(`http://localhost:3001/reviews/${id}`, 'DELETE')
-     console.log(data);
+      const updatedUsers = await fetchDataWithToken(`http://localhost:3001/reviews/${id}`, 'DELETE')
+      setUsers(updatedUsers)
+      const currentUserId = JSON.parse(sessionStorage.getItem('user')).id
+      const updatedUser = updatedUsers.find(user => user.id === currentUserId);
+
+      setProfile(updatedUser)
      } catch (error) {
       console.log(error);
      }
@@ -33,8 +39,13 @@ const Review = ({id, description, user, rating, comments}) => {
 
      
     try {
-       const data = await postDataWithToken(`http://localhost:3001/reviews/${id}`, 'PATCH', body)
-       console.log(data);
+       const updatedUsers = await postDataWithToken(`http://localhost:3001/reviews/${id}`, 'PATCH', body)
+       setUsers(updatedUsers)
+       const currentUserId = JSON.parse(sessionStorage.getItem('user')).id
+       const updatedUser = updatedUsers.find(user => user.id === currentUserId);
+      console.log(updatedUser);
+       setProfile(updatedUser)
+
     } catch (error) {
      console.log(error);
     }
@@ -44,34 +55,49 @@ const Review = ({id, description, user, rating, comments}) => {
 
 const handleSubmit = async (e) => {
   e.preventDefault()
-const userId = JSON.parse(sessionStorage.getItem('user')).id
+const currentUser = JSON.parse(sessionStorage.getItem('user'))
+
+
+if (!currentUser) {
+  alert('You have to be logged in to add comments!')
+  navigate('/login')
+}
+else {
   const body = {
     content: e.target[0].value,
     review: id,
-    user: userId
+    user: currentUser.id
   }
 
   try {
-  const data = await postDataWithToken('http://localhost:3001/comments', 'POST', body)
-  console.log(data);
+  const updatedMovies = await postDataWithToken('http://localhost:3001/comments', 'POST', body)
+  const updatedMovie = updatedMovies.find(movie => movie.id === movieId);
+  setMovieInfo(updatedMovie)
+  
   } catch (error) {
     console.log(error);
   }
 }
-  
+}
+
+const stars = Array.from({length: rating})
+
   return (
     <div id={id} className={style.container}>
-      <h2>{user}</h2>
+      {user &&<h2>{user}</h2>}
+      {movie && <h2>{movie}</h2>}
       {
-        !editMode &&
-        <div>
-          <span className={style.rating}>
-             <p>{rating}</p>
-      
-      <img className={style.star} src={star}></img>
-          </span>
-      <p>{description}</p>
-      </div>
+        !editMode && (
+          <div>
+            {
+              stars.map((_, index) => (<img key={index} className={style.star} src={star}></img>))
+            }
+          
+          
+          <p>{description}</p>
+          </div>
+        )
+        
       }
       
       {
@@ -107,8 +133,8 @@ const userId = JSON.parse(sessionStorage.getItem('user')).id
       
     {location.pathname == `/movie/${movieId}` && 
      <div>
-      <form onSubmit={handleSubmit} style={{display: 'flex', alignItems: 'center'}}>
-      <textarea placeholder='Add comment...' name='description' className={style.addCommentInput}></textarea>
+      <form onSubmit={handleSubmit} className={style.commentForm}>
+      <textarea placeholder='Add comment...' name='description' className={style.addCommentInput} required></textarea>
       <input type='submit' className={style.submitComment}></input>
       </form>
     
