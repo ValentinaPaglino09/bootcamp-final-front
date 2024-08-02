@@ -20,7 +20,7 @@ const SearchBar = ({moviesData, setResults}) => {
 
   return (
     <div className={style.container}>
-      <input className={style.searchBar} placeholder='Search...' type='search' value={searchValue} onChange={handleSearch}></input>
+      <input className={style.searchBar} placeholder='Search by title, gender or year...' type='search' value={searchValue} onChange={handleSearch}></input>
       {/* <input type='submit' value='Search' ></input> */}
     </div>
   )

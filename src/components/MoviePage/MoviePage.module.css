@@ -26,8 +26,10 @@
     margin-right: 2em;
 }
 
+
+
 .synopsis {
-    width: 30em;
+    width: 100%;
     margin-bottom: 1em;
 }
 
@@ -101,7 +103,7 @@
     color: white;
     border-radius: 4px;
     font-size: medium;
-    
+    margin-top: 1em;
 }
 
 .submit:hover {
@@ -113,6 +115,7 @@
     display: flex;
     align-items: center;
     gap: .5em;
+    margin-top: .5em;
 }
 
 .ratingInput { 
@@ -123,3 +126,14 @@
      font-size: large;
      border-radius: 5px;
     }
+
+    @media only screen and (max-width: 600px) {
+        .movieContainer {
+            flex-direction: column;
+        }
+    
+        .submit {
+            width: 100%;
+        }
+    }
+    

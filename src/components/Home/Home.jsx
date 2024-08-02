@@ -2,7 +2,6 @@ import React, { useEffect, useState } from 'react'
 import style from './Home.module.css'
 import Movie from '../Movie/Movie'
 import SearchBar from '../SearchBar/SearchBar'
-import MoviePage from '../MoviePage/MoviePage'
 import { fetchData } from '../../utils/fetchData'
 import { avgRating } from '../../utils/avgRating'
 

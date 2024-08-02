@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useState } from 'react'
 import style from './Login.module.css'
 import { useNavigate } from 'react-router-dom'
 import { postData } from '../../utils/fetchData'
@@ -6,6 +6,7 @@ import { postData } from '../../utils/fetchData'
 
 const Login = () => {
   const navigate = useNavigate()
+  const [error, setError] = useState('')
 
 const handleSubmit = async (e) => {
   e.preventDefault()
@@ -21,7 +22,13 @@ const handleSubmit = async (e) => {
 
   try {
     const dataLogin = await postData('http://localhost:3001/login', 'POST', body)
-    if (dataLogin.statusCode == 401) console.log('No está autorizado.');
+    if (dataLogin.message == "You have been banned.") {
+     setError('You have been temporarily banned. Access to your account has been restricted.')
+    }
+    else if (dataLogin.message == "Incorrect credentials"){
+     setError('Incorrect username or password.')
+      
+    }
     else {localStorage.setItem('token', dataLogin.token)
     sessionStorage.setItem('user', JSON.stringify(dataLogin.user))
     navigate('/')}
@@ -43,6 +50,7 @@ const handleSubmit = async (e) => {
       <input id='pass' type='password' name='pass' className={style.formInput}></input>
 
       <input type='submit' className={style.submit} value='Log in'></input>
+      {error && <p style={{color: "red", marginBottom: '1em', width: '18em'}}>{error}</p>}
       <p>Don't have an account?</p>
     <button onClick={(e) => {
       e.preventDefault()
