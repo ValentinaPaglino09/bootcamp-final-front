@@ -19,7 +19,7 @@ const Review = ({id, description, user, rating, comments, movie, setMovieInfo, s
      e.preventDefault()
      try {
       const updatedUsers = await fetchDataWithToken(`http://localhost:3001/reviews/${id}`, 'DELETE')
-      setUsers(updatedUsers)
+      if (location.pathname == 'admin') setUsers(updatedUsers)
       const currentUserId = JSON.parse(sessionStorage.getItem('user')).id
       const updatedUser = updatedUsers.find(user => user.id === currentUserId);
 
@@ -40,7 +40,9 @@ const Review = ({id, description, user, rating, comments, movie, setMovieInfo, s
      
     try {
        const updatedUsers = await postDataWithToken(`http://localhost:3001/reviews/${id}`, 'PATCH', body)
-       setUsers(updatedUsers)
+
+        if (location.pathname == 'admin') setUsers(updatedUsers)
+
        const currentUserId = JSON.parse(sessionStorage.getItem('user')).id
        const updatedUser = updatedUsers.find(user => user.id === currentUserId);
       console.log(updatedUser);
