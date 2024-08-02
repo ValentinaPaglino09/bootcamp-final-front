@@ -18,15 +18,20 @@ const handleUser = async (e) => {
 }
 
   return (
-    <div id={id}>
-      <h1>{name + ' ' + lastName}</h1>
-      <h2>{email}</h2>
+    <div id={id} className={style.dashboard}>
+      <div className={style.userName}>
+        <h1>{name + ' ' + lastName}</h1>
+        <h2>{email}</h2>
+      </div>
+      <div className={style.cardsDiv}>
+
       {
         reviews.map(review => (
-          <Review key={review.id} id={review.id} user={name} description={review.description} rating={review.rating} setUsers={setUsers}/>
+          <Review  key={review.id} id={review.id} user={name} description={review.description} rating={review.rating} setUsers={setUsers}/>
         ))
       }
-      <button onClick={handleUser}>{isBanned ? 'Habilitar' : 'Deshabilitar'}</button>
+      </div>
+      <button onClick={handleUser} className={style.btn}>{isBanned ? 'Habilitar' : 'Deshabilitar'}</button>
     </div>
   )
 }
